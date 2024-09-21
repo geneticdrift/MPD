@@ -56,6 +56,13 @@ if libopus_dep.found()
   ]
 endif
 
+conf.set('ENABLE_META_SOURCE', true)
+decoder_features.set('ENABLE_META_SOURCE', true)
+decoder_plugins_sources += [
+'MetaSourceDecoderPlugin.cxx',
+'MetaSourceDomain.cxx',
+]
+
 if ogg_dep.found()
   decoder_plugins_sources += 'OggDecoder.cxx'
 endif

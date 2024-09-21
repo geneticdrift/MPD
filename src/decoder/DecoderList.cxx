@@ -32,6 +32,7 @@
 #include "plugins/MpcdecDecoderPlugin.hxx"
 #include "plugins/FluidsynthDecoderPlugin.hxx"
 #include "plugins/SidplayDecoderPlugin.hxx"
+#include "plugins/MetaSourceDecoderPlugin.h"
 #include "Log.hxx"
 #include "PluginUnavailable.hxx"
 
@@ -104,6 +105,10 @@ constinit const struct DecoderPlugin *const decoder_plugins[] = {
 	&ffmpeg_decoder_plugin,
 #endif
 	&pcm_decoder_plugin,
+
+#ifdef ENABLE_META_SOURCE
+	&meta_source_decoder_plugin,
+#endif
 	nullptr
 };
 
