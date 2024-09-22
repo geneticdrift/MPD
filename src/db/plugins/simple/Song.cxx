@@ -17,6 +17,7 @@ using std::string_view_literals::operator""sv;
 Song::Song(DetachedSong &&other, Directory &_parent) noexcept
 	:parent(_parent),
 	 filename(other.GetURI()),
+	 target(other.GetRealURI()),
 	 tag(std::move(other.WritableTag())),
 	 mtime(other.GetLastModified()),
 	 added(other.GetAdded()),
