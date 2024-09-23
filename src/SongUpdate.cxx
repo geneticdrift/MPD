@@ -85,6 +85,7 @@ Song::UpdateFile(Storage &storage, const StorageFileInfo &info)
 
 	mtime = info.mtime;
 	audio_format = new_audio_format;
+	target = tag_builder.GetTargetUri();
 	tag_builder.Commit(tag);
 	return true;
 }

@@ -104,6 +104,8 @@ public:
 	 */
 	virtual void OnPicture(const char *mime_type,
 			       std::span<const std::byte> buffer) noexcept = 0;
+
+	virtual void OnTargetUri(std::string_view uri) noexcept = 0;
 };
 
 class NullTagHandler : public TagHandler {
@@ -118,6 +120,7 @@ public:
 	void OnAudioFormat(AudioFormat af) noexcept override;
 	void OnPicture(const char *mime_type,
 		       std::span<const std::byte> buffer) noexcept override;
+	void OnTargetUri(std::string_view uri) noexcept override;
 };
 
 /**
@@ -164,6 +167,7 @@ public:
 	void OnPair(std::string_view key,
 		    std::string_view value) noexcept override;
 	void OnAudioFormat(AudioFormat af) noexcept override;
+	void OnTargetUri(std::string_view uri) noexcept override;
 };
 
 #endif

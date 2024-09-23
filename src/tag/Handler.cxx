@@ -32,6 +32,11 @@ NullTagHandler::OnAudioFormat([[maybe_unused]] AudioFormat af) noexcept
 }
 
 void
+NullTagHandler::OnTargetUri([[maybe_unused]] std::string_view uri) noexcept
+{
+}
+
+void
 AddTagHandler::OnDuration(SongTime duration) noexcept
 {
 	tag.SetDuration(duration);
@@ -74,4 +79,10 @@ FullTagHandler::OnAudioFormat(AudioFormat af) noexcept
 {
 	if (audio_format != nullptr)
 		*audio_format = af;
+}
+
+void
+FullTagHandler::OnTargetUri(std::string_view uri) noexcept
+{
+	tag.SetTargetUri(uri);
 }

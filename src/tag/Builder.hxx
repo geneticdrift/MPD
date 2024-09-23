@@ -33,6 +33,13 @@ class TagBuilder {
 	/** an array of tag items */
 	std::vector<TagItem *> items;
 
+	/**
+	 * The target uri of the audio source
+	 * if this file is only metadata
+	 * for another audio source
+	 **/
+	std::string target_uri;
+
 public:
 	/**
 	 * Create an empty tag.
@@ -148,6 +155,14 @@ public:
 	 * Removes all tag items of the specified type.
 	 */
 	void RemoveType(TagType type) noexcept;
+
+	void SetTargetUri(std::string_view uri) noexcept {
+		target_uri = uri;
+	}
+
+	const std::string &GetTargetUri() noexcept {
+		return target_uri;
+	}
 
 private:
 	void AddItemInternal(TagType type, std::string_view value) noexcept;
