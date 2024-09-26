@@ -16,6 +16,7 @@
 #include <fmt/format.h>
 
 #define SONG_FILE "file: "
+#define SONG_TARGET "target: "
 
 static void
 song_print_uri(Response &r, const char *uri, bool base) noexcept
@@ -72,6 +73,10 @@ song_print_info(Response &r, const LightSong &song, bool base) noexcept
 {
 	song_print_uri(r, song, base);
 
+	if (song.real_uri != nullptr) {
+		r.Fmt(FMT_STRING(SONG_TARGET "{}\n"), song.real_uri);
+	}
+
 	PrintRange(r, song.start_time, song.end_time);
 
 	if (!IsNegative(song.mtime))
@@ -97,6 +102,10 @@ void
 song_print_info(Response &r, const DetachedSong &song, bool base) noexcept
 {
 	song_print_uri(r, song, base);
+
+	if (song.HasRealURI()) {
+		r.Fmt(FMT_STRING(SONG_TARGET "{}\n"), song.GetRealURI());
+	}
 
 	PrintRange(r, song.GetStartTime(), song.GetEndTime());
 
